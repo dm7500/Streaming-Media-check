@@ -8,3 +8,4 @@ To-Do:
 - Option to mark movies as 'Saved', even if they are available online. Thinking of using the Plex Collection feature to mark.
 - Option to delete movies as they are found.
 - Different modes. Scan and report only, or scan and delete.
+- Ability to search for TV Shows as well. Not sure how to handle different seasons however.
