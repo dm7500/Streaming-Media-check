@@ -3,6 +3,9 @@ Streaming-Media-check
 
 A Python script I'm putting together to check my media server for content avaliable on Streaming services, and offer the choice to delete, in order to save space.
 
+Recently added:
+- Changed log directory to base path. this should make it non-OS dependent.
+
 To-Do:
 - Add option to check Amazon Instant Video as well as Netflix.
 - Option to mark movies as 'Saved', even if they are available online. Thinking of using the Plex Collection feature to mark. Also would be nice to have the script update the XML to add the movie to the 'Saved' collection.
