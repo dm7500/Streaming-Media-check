@@ -1,5 +1,5 @@
 #Python Library Imports
-import os, sys, sre, json, urllib, shutil, logging, stat, win32api, win32con, datetime, httplib, urllib
+import os, sys, sre, json, urllib, shutil, logging, stat, win32api, win32con, datetime, httplib, urllib, module_locater, tools
 from xml.dom import minidom
 #------------------
 header = """
@@ -10,13 +10,18 @@ header = """
 ****************************************
 \n"""
 
+#Script Directory setup
+myDateTime = datetime.datetime.now().strftime("%y-%m-%d-%H-%M")
+Scriptdir = module_locater.module_path()
+logdir = Scriptdir + '\\logs\\'
+logfile = logdir + 'Streamingcheck-' + myDateTime + '.log'
+
 #Log Handler Setup
 logger = logging.getLogger('Netflix_check')
-logdate = datetime.datetime.now().strftime("%y-%m-%d-%H-%M")
-hdlr = logging.FileHandler('D:\scripts\logs\Netflix Check\Netflix_Check-' + logdate + '.log')
+hdlr = logging.FileHandler(logfile)
 formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
 hdlr.setFormatter(formatter)
-logger.addHandler(hdlr) 
+logger.addHandler(hdlr)
 logger.setLevel(logging.INFO)
 
 def movie_data(title):
@@ -47,14 +52,14 @@ def movie_data(title):
 	HTMLsource2 = url.read()
 	url.close()
 	Netflix()
-	
+
 def Netflix():
 	service = sre.findall('friendlyName":"([^"]+)', HTMLsource2)
 	if 'Netflix Instant' in service:
 		return True
 	else:
 		return False
-		
+
 def delete_movie():
 		print "%s marked for deletion. Moving on to the next movie." % movie
 		logger.info('%s is avalible on Netflix.' % movie)
